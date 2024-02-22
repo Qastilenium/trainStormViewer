@@ -14,6 +14,7 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Storm Viewer"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "info.circle"), style: .done, target: self, action: #selector(showInfo))
         let fm = FileManager.default
         let path = Bundle.main.resourcePath!
         let items = try! fm.contentsOfDirectory(atPath: path)
@@ -41,6 +42,11 @@ class ViewController: UITableViewController {
             vc.selectedImage = pictures[indexPath.row]
             navigationController?.pushViewController(vc, animated: true)
         }
+    }
+    @objc func showInfo() {
+        let ac = UIAlertController(title: "About App", message: "Storm Viewer, v. 1.0. Created by Ilryc Marokonen, 2024. Thx for hackingwithswift.com for a guide!", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Okay, got it", style: .default))
+        present(ac, animated: true)
     }
 }
 
